@@ -30,7 +30,7 @@
              <a class="nav-link" href="{{ url_for('tracking') }}">Tracking</a>
            </li>
            <li class="nav-item">
-             <a class="nav-link disabled" href=="{{ url_for('map') }}">Find Nearby Centers</a>
+             <a class="nav-link" href=="{{ url_for('map') }}">Find Nearby Centers</a>
            </li>
            {% endif %}
          </ul>
@@ -82,7 +82,7 @@
          {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
          <div class="alert alert-info" role="alert">{{ message }}</div>
          {% endfor %} {% endif %} {% endwith %} {% block app_content %}{% endblock %}
-         
+
          <!-- <footer class="page-footer fixed-bottom font-small cyan pt-70 darken-3">
              <hr />
              <div class="container-fluid text-center text-md-left">
