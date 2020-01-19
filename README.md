@@ -1,6 +1,6 @@
 # terraChange
 
-Track your recycling! reovlutioninzing, gamifying. Using flask, bootstrap, gcloud, & [a QR code generator](https://github.com/nayuki/QR-Code-generator)
+terraChange aims to revolutionize the outdated bottle recycling system by integrating and gamifying the process for the end consumer. This app was built using flask, bootstrap, gcloud, & [a QR code generator](https://github.com/nayuki/QR-Code-generator). It is available live at `link.com`.
 
 
 # Inherency
