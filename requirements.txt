@@ -23,6 +23,7 @@ pipreqs==0.4.10
 py2app==0.7.3
 pyparsing==2.0.1
 python-dateutil==2.6.1
+python-dotenv==0.10.5
 pytz==2013.7
 requests==2.22.0
 singledispatch==3.4.0.3
