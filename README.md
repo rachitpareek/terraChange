@@ -9,11 +9,12 @@ Hundreds of millions of tons of plastic, aluminum, and glass have gone to waste 
 
 ### Waste Creation
 
-according to statista, 13.7 billion gallons of bottled water sold across the US in 2017. This translates to the equivalent of roughly 103 billion 16.9 fluid ounce sized water bottles being consumed each year - just in the United States. Globally, this number increases, with the equivalent of 783 billion such water bottles being sold! This amounts to millions of tons of plastic waste, and unfortunately is not being 
+According to statista, 13.7 billion gallons of bottled water were sold across the US in 2017. This translates to the equivalent of roughly 103 billion 16.9 fluid ounce sized water bottles being consumed each year - just in the United States. Globally, this number increases, with the equivalent of 783 billion such water bottles being sold! This amounts to millions of tons of plastic waste, and unfortunately is not being recycled.
 
-### recycling effectiveness
+### Recycling effectiveness
+Currently, approximately [1/3 of all plastic bottles](https://www.bottledwater.org/education/recycling) are recycled each year in the US, a rate that doubled over the past decade. Unfortunately, this rate remains low even though 90% of American households have access to recycling programs.
 At 33.4%, the recycling rate for single serve PET plastic bottled water containers has doubled in the last ten years.
-https://www.bottledwater.org/education/recycling
+
 More than 90% of U.S. households have access to curbside and drop off recycling programs
 Of all the plastics produced in the United States, PET plastic bottled water packaging makes up only 0.92% -- less than one percent
 Producing new products from rPET uses two-thirds less energy than required to make products from raw virgin materials. It also reduces greenhouse gas emissions
@@ -24,7 +25,7 @@ we use this for library books, loyalty programs, batteries (and all sorts of oth
 
 california has one of the best recycling systems in place. hi, or, etc. change this and save earth
 
-Run with:
+## Run with:
 ```Python
 virtualenv ENV
 source ENV/bin/activate
