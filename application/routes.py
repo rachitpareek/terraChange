@@ -23,6 +23,11 @@ def dashboard():
                            items=items.items, next_url=next_url,
                            prev_url=prev_url)
 
+@app.route('/map')
+@login_required
+def map():
+    return render_template('map.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:

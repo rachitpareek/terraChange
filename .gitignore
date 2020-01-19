@@ -1,6 +1,6 @@
-.DS_Store
+DS_Store
 *.csv
-ENV
+venv
 .vscode
 __pycache__
 .mypy_cache
