@@ -1,0 +1,7 @@
+.DS_Store
+*.csv
+ENV
+.vscode
+__pycache__
+.mypy_cache
+app.db

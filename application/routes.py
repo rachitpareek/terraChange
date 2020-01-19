@@ -2,8 +2,8 @@ from application import app, db
 from flask import render_template, flash, redirect, url_for, request, Markup
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-from application.forms import LoginForm, RegistrationForm
-from application.models import User, Item
+from application.forms import LoginForm, RegistrationForm, ItemForm
+from application.models import User, Post
 import os
 
 @app.route('/')
@@ -14,7 +14,14 @@ def home():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    page = request.args.get('page', 1, type=int)
+    items = current_user.items_tracked().paginate(
+        page, app.config['ITEMS_PER_PAGE'], False)
+    next_url = url_for('dashboard', page=items.next_num) if items.has_next else None
+    prev_url = url_for('dashboard', page=items.prev_num) if items.has_prev else None
+    return render_template('dashboard.html', title='Home',
+                           items=items.items, next_url=next_url,
+                           prev_url=prev_url)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -52,3 +59,16 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('registration.html', title='Register', form=form)
+
+@app.route('/tracking', methods=['GET', 'POST'])
+@login_required
+def tracking():
+    form = ItemForm()
+    if form.validate_on_submit():
+        input_item = Post(material=form.material.data.strip(), count=form.count.data.strip(), author=current_user)
+        db.session.add(input_item)
+        db.session.commit()
+        flash('You have inputted a new item to be recycled!')
+        return redirect(url_for('tracking'))
+    return render_template("tracking.html", title='Tracking', form=form)
+

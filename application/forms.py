@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from application.models import User
 
@@ -29,3 +29,13 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('An account with that email address already exists. '
                                     + 'Please reset your password or sign up with a different email.')
+
+
+class ItemForm(FlaskForm):
+    material = SelectField(
+        'Material',
+        choices=[('Glass', 'Glass'), ('Plastic', 'Plastic'), ('Aluminum', 'Aluminum')]
+    )
+    count = TextAreaField('Count', validators=[
+        DataRequired(), Length(min=1, max=140)])
+    submit = SubmitField('Submit')
