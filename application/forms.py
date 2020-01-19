@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, TextAreaField, IntegerField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from application.models import User
 
@@ -36,6 +36,6 @@ class ItemForm(FlaskForm):
         'Material',
         choices=[('Glass', 'Glass'), ('Plastic', 'Plastic'), ('Aluminum', 'Aluminum')]
     )
-    count = TextAreaField('Count', validators=[
-        DataRequired(), Length(min=1, max=140)])
+    count = IntegerField('Count', validators=[
+        DataRequired()])
     submit = SubmitField('Submit')

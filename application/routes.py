@@ -5,6 +5,8 @@ from werkzeug.urls import url_parse
 from application.forms import LoginForm, RegistrationForm, ItemForm
 from application.models import User, Post
 import os
+import locale
+locale.setlocale( locale.LC_ALL, '' )
 
 prices = {'Glass': 0.1, 'Plastic': 0.05, 'Aluminum': 0.05}
 
@@ -30,7 +32,7 @@ def dashboard():
     prev_url = url_for('dashboard', page=items.prev_num) if items.has_prev else None
     return render_template('dashboard.html', title='Home',
                            items=items.items, next_url=next_url,
-                           prev_url=prev_url, total=total)
+                           prev_url=prev_url, total=locale.currency(total, grouping=True))
 
 @app.route('/map')
 @login_required
@@ -79,10 +81,23 @@ def register():
 def tracking():
     form = ItemForm()
     if form.validate_on_submit():
-        input_item = Post(material=form.material.data.strip(), count=form.count.data.strip(), author=current_user)
+        input_item = Post(material=form.material.data.strip(), count=form.count.data, 
+            value=locale.currency(prices[form.material.data.strip()] * int(form.count.data), grouping=True), author=current_user)
         db.session.add(input_item)
         db.session.commit()
         flash('You have inputted a new item to be recycled!')
         return redirect(url_for('tracking'))
     return render_template("tracking.html", title='Tracking', form=form)
 
+@app.route('/delete_item/<item_id>', methods=['POST'])
+@login_required
+def delete_item(item_id):
+    item = Post.query.filter_by(id=item_id).first_or_404()
+    try:
+        db.session.delete(item)
+        db.session.commit()
+        flash('You have deleted the item.')
+        return redirect(url_for('dashboard'))
+    except:
+        flash('You have not deleted the item.')
+        return redirect(url_for('dashboard'))

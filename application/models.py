@@ -35,9 +35,10 @@ class User(UserMixin, db.Model):
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     material = db.Column(db.String(140))
-    count = db.Column(db.String(140))
+    count = db.Column(db.Integer)
+    value = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
-        return '<Post made of {}, count {}>'.format(self.material, self.count)
+        return '<Post made of {}, count {}, value {}>'.format(self.material, self.count, self.value)

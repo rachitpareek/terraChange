@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block app_content %}
 <h1>Hi, {{ current_user.username }}! View your items to be recycled here. You can earn up to 
-    ${{ total }} by recycling everything you have tracked.</h1>
+    {{ total }} by recycling everything you have tracked.</h1>
 <br />
 <h5>Visit the <a href="{{ url_for('tracking') }}"><b>tracking</b></a> tab to track a new item.</h5>
 {% if items|length == 0 %}
