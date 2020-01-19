@@ -1,22 +1,3 @@
-<!-- <table class="table table-hover">
-    <tr>
-        <td class="col-md-6 text-center">
-            <div>
-                Material: {{ item.material }}
-                <br> Count: {{ item.count }}
-                <br> Value: {{ item.value }}
-            </div>
-        </td>
-        <td class="col-md-6 text-center">
-            <div>
-                <form action="{{ url_for('delete_item', item_id=item.id) }}" method=post>
-                    <input class="btn btn-danger" type="submit" value="Delete">
-                </form>
-            </div>
-        </td>
-    </tr>
-</table> -->
-
 <div class="card">
   <h5 class="card-header">Value: {{ item.value }}</h5>
   <div class="card-body">
@@ -28,3 +9,4 @@
     </div>
   </div>
 </div>
+<br>

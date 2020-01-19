@@ -6,4 +6,38 @@
         {{ wtf.quick_form(form, button_map={'submit':'success'}) }}
     </div>
 </div>
-{% endif %} {% endblock %}
+{% endif %}
+
+<h2>OR</h2></h1> <br>
+
+<video id="preview"></video>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+ let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+ scanner.addListener('scan', function (content) {
+    let data = {'data': content};
+    console.log(data);
+    console.log("{{ url_for('qrscan') }}");
+    $.ajax({
+       type: "POST",
+       url:  "{{ url_for('qrscan') }}",
+       data: JSON.stringify(data),
+       contentType: 'application/json;charset=UTF-8'
+     });
+     console.log("sent!");
+     window.location.href = "{{ url_for('dashboard') }}"
+
+ });
+ Instascan.Camera.getCameras().then(function (cameras) {
+    if (cameras.length > 0) {
+      scanner.start(cameras[0]);
+    } else {
+      console.error('No cameras found.');
+    }
+ }).catch(function (e) {
+    console.error(e);
+ });
+</script>
+
+
+{% endblock %}
