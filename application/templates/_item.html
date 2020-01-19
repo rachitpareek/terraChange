@@ -1,14 +1,18 @@
 <table class="table table-hover">
     <tr>
-        <td>
-            Material: {{ item.material }}
-            <br> Count: {{ item.count }}
-            <br> Value: {{ item.value }}
-            <br>
-            <form action="{{ url_for('delete_item', item_id=item.id) }}" method=post>
-                <input type=submit value="Delete">
-            </form>
+        <td class="col-md-6 text-center">
+            <div>
+                Material: {{ item.material }}
+                <br> Count: {{ item.count }}
+                <br> Value: {{ item.value }}
+            </div>
+        </td>
+        <td class="col-md-6 text-center">
+            <div>
+                <form action="{{ url_for('delete_item', item_id=item.id) }}" method=post>
+                    <input class="btn btn-danger" type="submit" value="Delete">
+                </form>
+            </div>
         </td>
     </tr>
 </table>
-
