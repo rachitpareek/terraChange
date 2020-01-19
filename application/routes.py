@@ -81,13 +81,27 @@ def register():
 def tracking():
     form = ItemForm()
     if form.validate_on_submit():
-        input_item = Post(material=form.material.data.strip(), count=form.count.data, 
+        input_item = Post(material=form.material.data.strip(), count=form.count.data,
             value=locale.currency(prices[form.material.data.strip()] * int(form.count.data), grouping=True), author=current_user)
         db.session.add(input_item)
         db.session.commit()
         flash('You have inputted a new item to be recycled!')
         return redirect(url_for('tracking'))
     return render_template("tracking.html", title='Tracking', form=form)
+
+@app.route('/qrscan', methods=['GET', 'POST'])
+@login_required
+def qrscan():
+    data = request.json['data'].split(',')
+    for item in data:
+        stripped = str(item)[1:-1].split(' ')
+        count = stripped[1]
+        material = stripped[0]
+        input_item = Post(material=material, count=count, value=locale.currency(prices[material] * int(count), grouping=True), author=current_user)
+        db.session.add(input_item)
+        db.session.commit()
+    flash('You have inputted a new item to be recycled!')
+    return redirect(url_for('tracking'))
 
 @app.route('/delete_item/<item_id>', methods=['POST'])
 @login_required
