@@ -29,6 +29,7 @@
             <ul class="nav navbar-nav">
                 {% if not current_user.is_anonymous %}
                 <li><a href="{{ url_for('dashboard') }}">{{ 'Dashboard' }}</a></li>
+                <li><a href="{{ url_for('tracking') }}">{{ 'Tracking' }}</a></li>
                 <li><a href="{{ url_for('map') }}">{{ 'Find Nearby Centers' }}</a></li>
                 {% endif %}
             </ul>
