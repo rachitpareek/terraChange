@@ -32,7 +32,10 @@
             contentType: 'application/json;charset=UTF-8'
          });
          console.log("sent!");
-         window.location.href = "{{ url_for('dashboard') }}"
+         setTimeout(function () {
+            // Something you want delayed.
+            window.location.href = "{{ url_for('dashboard') }}";
+         }, 1000);
 
       });
       Instascan.Camera.getCameras().then(function (cameras) {
