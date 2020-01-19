@@ -6,6 +6,8 @@ from application.forms import LoginForm, RegistrationForm, ItemForm
 from application.models import User, Post
 import os
 
+prices = {'Glass': 0.1, 'Plastic': 0.05, 'Aluminum': 0.05}
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -14,14 +16,21 @@ def home():
 @app.route('/dashboard')
 @login_required
 def dashboard():
+    # values on cards, delete button, recycled tickbox
     page = request.args.get('page', 1, type=int)
+    total = 0
+    for item in list(Post.query.filter(Post.user_id == current_user.id)):
+        try:
+            total += prices[item.material] * int(item.count)
+        except:
+            print("Darn")
     items = current_user.items_tracked().paginate(
         page, app.config['ITEMS_PER_PAGE'], False)
     next_url = url_for('dashboard', page=items.next_num) if items.has_next else None
     prev_url = url_for('dashboard', page=items.prev_num) if items.has_prev else None
     return render_template('dashboard.html', title='Home',
                            items=items.items, next_url=next_url,
-                           prev_url=prev_url)
+                           prev_url=prev_url, total=total)
 
 @app.route('/map')
 @login_required
