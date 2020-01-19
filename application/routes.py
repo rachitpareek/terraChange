@@ -18,7 +18,6 @@ def home():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    # values on cards, delete button, recycled tickbox
     page = request.args.get('page', 1, type=int)
     total = 0
     for item in list(Post.query.filter(Post.user_id == current_user.id)):
