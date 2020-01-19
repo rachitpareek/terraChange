@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<!-- <table class="table table-hover">
     <tr>
         <td class="col-md-6 text-center">
             <div>
@@ -15,4 +15,16 @@
             </div>
         </td>
     </tr>
-</table>
+</table> -->
+
+<div class="card">
+  <h5 class="card-header">Value: {{ item.value }}</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{ item.count }} count of {{ item.material }} bottles </h5>
+    <div>
+        <form action="{{ url_for('delete_item', item_id=item.id) }}" method=post>
+            <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+    </div>
+  </div>
+</div>
