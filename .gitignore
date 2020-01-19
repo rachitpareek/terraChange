@@ -6,3 +6,4 @@ ENV
 __pycache__
 .mypy_cache
 app.db
+migrations
